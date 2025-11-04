@@ -9,7 +9,7 @@ export function PageLayout({ children }: PageLayoutProps) {
     <div className="flex flex-col min-h-screen bg-white text-black shadow-md">
       <Navbar />
       {children}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
