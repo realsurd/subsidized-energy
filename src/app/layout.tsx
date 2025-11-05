@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { PageLayout } from "@/components/page-layout";
-import SmoothScroll from "@/components/lenis-smooth-scroll";
+// import SmoothScroll from "@/components/lenis-smooth-scroll";
 import localFont from "next/font/local";
+import SmoothScroll from "@/components/lenis-smooth-scroll";
 
 
 const trap = localFont({

@@ -1,60 +1,64 @@
-"use client";
 
 import PageMaxWidth from "@/components/page-max-width";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 
+
+ const benefits = [
+   {
+     id: 1,
+     icon: "/assets/reduce-icon.svg",
+     title: "Up to 90% Bill Reduction",
+     description:
+       "Dramatically reduce your monthly electricity costs with government-subsidized solar installations.",
+   },
+   {
+     id: 2,
+     icon: "/assets/environ-icon.svg",
+     title: "Environmental Impact",
+     description:
+       "Reduce your carbon footprint by 3-4 tons of CO2 annually while supporting clean energy.",
+   },
+   {
+     id: 3,
+     icon: "/assets/home-icon.svg",
+     title: "Increase Home Value",
+     description:
+       "Solar installations can increase your property value by up to 4% according to recent studies.",
+   },
+   {
+     id: 4,
+     icon: "/assets/graph-icon.svg",
+     title: "Long-term Investment",
+     description:
+       "Enjoy 25+ years of free electricity with industry-leading solar panel warranties.",
+   },
+   {
+     id: 5,
+     icon: "/assets/sheild-icon.svg",
+     title: "Energy Independence",
+     description:
+       "Protect yourself from rising utility rates and power outages with reliable solar energy.",
+   },
+   {
+     id: 6,
+     icon: "/assets/flash-icon.svg",
+     title: "Fast Installation",
+     description:
+       "Professional installation completed in 1-3 days with minimal disruption to your routine.",
+   },
+];
+ 
+
+
 export default function WhyChooseSolar() {
-  const benefits = [
-    {
-      id: 1,
-      icon: "/assets/reduce-icon.svg",
-      title: "Up to 90% Bill Reduction",
-      description:
-        "Dramatically reduce your monthly electricity costs with government-subsidized solar installations.",
-    },
-    {
-      id: 2,
-      icon: "/assets/environ-icon.svg",
-      title: "Environmental Impact",
-      description:
-        "Reduce your carbon footprint by 3-4 tons of CO2 annually while supporting clean energy.",
-    },
-    {
-      id: 3,
-      icon: "/assets/home-icon.svg",
-      title: "Increase Home Value",
-      description:
-        "Solar installations can increase your property value by up to 4% according to recent studies.",
-    },
-    {
-      id: 4,
-      icon: "/assets/graph-icon.svg",
-      title: "Long-term Investment",
-      description:
-        "Enjoy 25+ years of free electricity with industry-leading solar panel warranties.",
-    },
-    {
-      id: 5,
-      icon: "/assets/sheild-icon.svg",
-      title: "Energy Independence",
-      description:
-        "Protect yourself from rising utility rates and power outages with reliable solar energy.",
-    },
-    {
-      id: 6,
-      icon: "/assets/flash-icon.svg",
-      title: "Fast Installation",
-      description:
-        "Professional installation completed in 1-3 days with minimal disruption to your routine.",
-    },
-  ];
+ 
 
     return (
-      <PageMaxWidth>
-        <section className="py-16 lg:py-24">
+      <section className="py-16 lg:py-24 bg-white">
+        <PageMaxWidth>
           {/* Header */}
-          <div className="relative px-4 md:px-20 rounded-3xl min-h-[1054px]  overflow-hidden ">
+          <div className="relative px-4 md:px-20 rounded-3xl min-h-[1004px]  overflow-hidden ">
             <Image
               src={
                 "https://res.cloudinary.com/dk5mfu099/image/upload/v1762235713/a85852b1d87714c5ff0002e32129aed382ab16a6_1_cnrw5u.png"
@@ -78,7 +82,7 @@ export default function WhyChooseSolar() {
               {benefits.map((benefit) => (
                 <Card
                   key={benefit.id}
-                  className="rounded-2xl md:h-[350px] flex justify-center  border-2 transition-transform duration-300 hover:scale-105 bg-[#fffaf5] border-[#FFFFFF]"
+                  className=" rounded-2xl md:h-[320.5px] flex justify-center  border-2 transition-transform duration-300 hover:scale-105 bg-[#fffaf5] border-[#FFFFFF] "
                 >
                   <CardContent>
                     <div className="text-4xl mb-4">
@@ -103,7 +107,7 @@ export default function WhyChooseSolar() {
               ))}
             </div>
           </div>
-        </section>
-      </PageMaxWidth>
+        </PageMaxWidth>
+      </section>
     );
 }

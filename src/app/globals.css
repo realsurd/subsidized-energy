@@ -124,9 +124,7 @@
     @apply bg-background text-foreground;
   }
 }
-/* .hk-grotesk{
-  font-family: 'Hanken Grotesk', sans-serif;
-} */
+
 
 .instrument-serif-regular {
   font-family: "Instrument Serif", serif;

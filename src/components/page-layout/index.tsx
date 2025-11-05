@@ -6,10 +6,10 @@ interface PageLayoutProps {
 
 export function PageLayout({ children }: PageLayoutProps) {
   return (
-    <div className="flex flex-col min-h-screen bg-white text-black shadow-md">
+    <div className="flex flex-col min-h-screen">
       <Navbar />
       {children}
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

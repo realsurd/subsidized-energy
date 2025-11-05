@@ -1,48 +1,38 @@
 "use client";
-
-import { ReactNode, FC, useEffect } from "react";
-import { ReactLenis } from "lenis/react";
-import Lenis from "@studio-freight/lenis";
-import { ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
+import { ReactLenis } from "lenis/react";
+import { useEffect, useRef, ReactNode } from "react";
 
-interface SmoothScrollProps {
+type Props = {
   children: ReactNode;
-}
+};
 
-gsap.registerPlugin(ScrollTrigger);
-const SmoothScroll: FC<SmoothScrollProps> = ({ children }) => {
+const SmoothScroll = ({ children }: Props) => {
+  const lenisRef = useRef<any>(null);
+
   useEffect(() => {
-    const lenis = new Lenis({
-      lerp: 0.08,
-    });
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
+    interface Lenis {
+      raf(time: number): void;
     }
 
-    requestAnimationFrame(raf);
+    interface ReactLenisRef {
+      lenis?: Lenis | null;
+    }
 
-    // Synchronize Lenis scrolling with GSAP's ScrollTrigger plugin
-    lenis.on("scroll", ScrollTrigger.update);
+    function update(time: number): void {
+      (lenisRef.current as ReactLenisRef | null)?.lenis?.raf(time * 1000);
+    }
 
-    // Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
-    // This ensures Lenis's smooth scroll animation updates on each GSAP tick
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000); // Convert time from seconds to milliseconds
-    });
+    gsap.ticker.add(update);
 
-    // Disable lag smoothing in GSAP to prevent any delay in scroll animations
-    gsap.ticker.lagSmoothing(0);
-
-    return () => {};
+    return () => gsap.ticker.remove(update);
   }, []);
 
   return (
     <ReactLenis
       root
       options={{
+        autoRaf: false,
         anchors: {
           offset: -80,
           onComplete: () => {
@@ -50,11 +40,13 @@ const SmoothScroll: FC<SmoothScrollProps> = ({ children }) => {
           },
         },
         smoothWheel: true,
+        lerp: 0.1,
       }}
+      ref={lenisRef}
     >
       {children}
     </ReactLenis>
   );
-};
+}
 
 export default SmoothScroll;

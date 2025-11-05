@@ -29,16 +29,12 @@ const HeroSection = () => {
     });
 
     // ✅ Title line animation
-    tl.from(
-      split.lines,
-      {
-        opacity: 0,
-        yPercent: 500,
-        duration: 3,
-        autoAlpha: 0,
-      },
-      "-=0.5"
-    )
+    tl.from(split.lines, {
+      opacity: 0,
+      yPercent: 500,
+      duration: 3,
+      autoAlpha: 0,
+    })
       // ✅ Button
       .from(
         ".hero-btn",
@@ -48,7 +44,29 @@ const HeroSection = () => {
           duration: 1,
           ease: "back.out(1.7)",
         },
-        "-=0.2"
+        ">-2"
+      )
+      .from(
+        ".hero-svg",
+        {
+          opacity: 0,
+          y: 50,
+          scale: 0.8,
+          duration: 1,
+          stagger: 0.2,
+          ease: "power3.out",
+        },
+        ">-1"
+      )
+      .from(
+        ".hero-banner",
+        {
+          opacity: 0,
+          scale: 0.8,
+          duration: 1,
+          ease: "power3.out",
+        },
+        ">-.5"
       );
   }, []);
 
@@ -76,7 +94,7 @@ const HeroSection = () => {
                       alt="solar icon"
                       width={50}
                       height={50}
-                      className=" translate-y-5 translate-x-5 "
+                      className=" translate-y-5 translate-x-5 hero-svg"
                     />
                     <Image
                       src={
@@ -85,7 +103,7 @@ const HeroSection = () => {
                       alt="solar icon"
                       width={50}
                       height={50}
-                      className=" translate-y-5"
+                      className=" translate-y-5 hero-svg"
                     />
                   </div>
                 </div>
@@ -120,7 +138,9 @@ const HeroSection = () => {
               </div>
             </div>
           </section>
-          <HeroAccordion />
+          <div className="hero-banner">
+            <HeroAccordion />
+          </div>
           <HeroSponsor />
         </div>
       </div>

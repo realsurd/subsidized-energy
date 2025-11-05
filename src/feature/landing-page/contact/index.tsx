@@ -5,11 +5,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger, SplitText } from "gsap/all";
 import Image from "next/image";
 import type React from "react";
 
-import { useState } from "react";
-
+import { useRef, useState } from "react";
+gsap.registerPlugin(ScrollTrigger, SplitText);
+  
 export default function GetFreeQuote() {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -40,16 +44,73 @@ export default function GetFreeQuote() {
       energyNeeds: "",
     });
   };
+  const quoteRef = useRef(null);
+
+  useGSAP(() =>
+  {
+    // Split heading words
+    const split = new SplitText(".qoute-heading", {
+      type: "words",
+    });
+
+    gsap.from(split.words, {
+      scrollTrigger: {
+        trigger: quoteRef.current,
+        start: "top 80%",
+      },
+      opacity: 0,
+      y: 40,
+      duration: 1,
+      stagger: 0.12,
+      ease: "power3.out",
+    });
+
+    // Subtitle fade in
+    gsap.from(".qoute-subtext", {
+      scrollTrigger: {
+        trigger: quoteRef.current,
+        start: "top 75%",
+      },
+      opacity: 0,
+      y: 20,
+      duration: 1,
+      delay: 0.2,
+      ease: "power2.out",
+    });
+
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: quoteRef.current,
+        start: "top center",
+        end: "bottom 80%",
+
+      },
+    });
+      tl.from(".content1", {
+        scale: 0.5,
+        opacity: 0,
+        x: -250,
+        overflow: "hidden",
+        duration: .5,
+      
+      });
+      tl.from(".content2", { scale: 0.5, opacity: 0, y: 100, duration: .5});
+
+
+  },[])
+
+
 
     return (
       <PageMaxWidth>
-        <section className="py-16 lg:py-24">
+        <section className="py-16 lg:py-24" ref={quoteRef}>
           {/* Top Section - Quote Header */}
           <div className="text-center mb-12 lg:mb-16">
-            <h2 className="text-3xl lg:text-[40px]  text-green-600 mb-4 instrument-serif-regular">
+            <h2 className="text-3xl lg:text-[40px]  text-green-600 mb-4 instrument-serif-regular qoute-heading">
               Get Your Free Solar Quote
             </h2>
-            <p className="text-base lg:text-[20px] text-muted-foreground max-w-2xl mx-auto font-light">
+            <p className="text-base lg:text-[20px] text-muted-foreground max-w-2xl mx-auto font-light qoute-subtext">
               Ready to start saving with subsidized solar? Contact us today for
               a free consultation and personalized quote.
             </p>
@@ -58,7 +119,7 @@ export default function GetFreeQuote() {
           {/* Main Content - Two Column Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 min-h-[700px]">
             {/* Left Side - Contact Info */}
-            <div className="flex flex-col justify-center bg-[white]  p-5 rounded-2xl ">
+            <div className="flex flex-col justify-center bg-[white]  p-5 rounded-2xl  content1">
               {/* Illustration Placeholder */}
               <div className="mb-4  hidden lg:block  ">
                 <Image
@@ -69,10 +130,10 @@ export default function GetFreeQuote() {
                   className="object-cover"
                 />
               </div>
-              <h3 className="text-2xl lg:text-[48px] font-bold text-foreground mb-3">
+              <h3 className="text-2xl lg:text-[40px] font-bold text-foreground mb-3">
                 Get in Touch with Us
               </h3>
-              <p className="text-base text-muted-foreground mb-8 md:text-[24px]">
+              <p className="text-base text-muted-foreground mb-8 md:text-[20px]">
                 Have questions, feedback, or partnership ideas? We're here to
                 listen and help.
               </p>
@@ -90,7 +151,7 @@ export default function GetFreeQuote() {
                       className="object-cover w-12 h-12"
                     />
                   </div>
-                  <div className="flex items-center gap-3 ">
+                  <div className="flex items-center gap-3 flex-wrap">
                     <p className="text-[#34C759] text-sm font-bold md:text-[25px]  underline">
                       Email:
                     </p>
@@ -130,7 +191,7 @@ export default function GetFreeQuote() {
             </div>
 
             {/* Right Side - Form */}
-            <div className="bg-white rounded-2xl p-7">
+            <div className="bg-white rounded-2xl p-7 content2">
               <form onSubmit={handleSubmit} className="space-y-6 ">
                 {/* Full Name and Phone - Side by side on desktop */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
