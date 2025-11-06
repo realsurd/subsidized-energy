@@ -58,7 +58,7 @@ export default function WhyChooseSolar() {
       <section className="py-16 lg:py-24 bg-white">
         <PageMaxWidth>
           {/* Header */}
-          <div className="relative px-4 md:px-20 rounded-3xl min-h-[1004px]  overflow-hidden ">
+          <div className="relative px-4 md:px-20 rounded-3xl min-h-screen  overflow-hidden py-20 md:py-10">
             <Image
               src={
                 "https://res.cloudinary.com/dk5mfu099/image/upload/v1762235713/a85852b1d87714c5ff0002e32129aed382ab16a6_1_cnrw5u.png"
@@ -67,7 +67,7 @@ export default function WhyChooseSolar() {
               fill
               className="object-cover object-center  w-full h-full absolute inset-0 pointer-events-none select-none"
             />
-            <div className="text-center mb-12 lg:mb-16 mt-5 md:mt-14 relative z-10">
+            <div className="text-center mb-12 lg:mb-16 mt-5  relative z-10">
               <h2 className="text-3xl lg:text-[40px] font-semibold text-white mb-4">
                 Why Choose Solar Energy?
               </h2>

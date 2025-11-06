@@ -43,7 +43,7 @@ export default function Newsletter() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className=" px-6 py-3 h-full w-full  rounded-full border-2 border-teal-400 focus:outline-none focus:ring-0 placeholder:text-gray-400 font-trap placeholder:font-bold placeholder:text-[25px] flex items-center text-[25px] "
+            className=" px-6 py-3 h-full w-full  rounded-full border-2 border-teal-400 focus:outline-none focus:ring-0 placeholder:text-gray-400 font-trap placeholder:font-bold placeholder:text-[20px] flex items-center text-[25px]  outline-0"
           />
           <Button
             type="submit"

@@ -9,6 +9,11 @@ import { AlignJustify, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { navbarItems } from "@/lib/nav";
 import PageMaxWidth from "../page-max-width";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "../ui/dialog";
+import { Label } from "../ui/label";
+import { Input } from "../ui/input";
+import ConnectWalletModal from "../wallet-connect-modal";
+// import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 const HeaderSection = () => {
   const [isScroll, setIsScroll] = useState<boolean>(false);
@@ -33,55 +38,57 @@ const HeaderSection = () => {
     setIsOpen(false); // close the menu after clicking a link
   };
   return (
-    <PageMaxWidth>
-      <section
-        className={`fixed left-[50%] -translate-x-[50%] w-[95%] flex justify-between items-center z-30   py-2.5 px-4 transition-all font-sora duration-500  bg-white/5  rounded-4xl backdrop-blur-md   text-black shadow-lg  ${
-          isScroll
-            ? "md:max-w-[960px] max-w-[90%] px-8 shadow-nav top-9 bg-white/5 rounded-4xl backdrop-blur-md "
-            : "md:max-w-[1200px] max-w-full   shadow-none top-3 md:rounded-none  md:bg-transparent md:backdrop-blur-none"
-        }`}
-      >
-        <Link href={"/"}>
-          <div className="w-[140px]  h-[60px] flex  items-center ">
-            <Image
-              src="https://res.cloudinary.com/dk5mfu099/image/upload/v1762019013/Frame_1000011524_ekqlru.png"
-              alt="logo"
-              width={100}
-              height={70}
-            />
-          </div>
-        </Link>
-        <section className="items-center justify-center hidden gap-9 px-4 py-3 text-base font-normal  md:flex flex-1 md:mx-3 ">
-          {navbarItems.map((link, index) => (
-            <Link
-              href={link.link}
-              key={index}
-              className="whitespace-nowrap text-[16px] md:text-[20px] "
-            >
-              {link.title}
-            </Link>
-          ))}
-        </section>
-        <section className="items-center justify-center hidden gap-6 md:flex">
-          <Link href={"/"}>
-            <Button className="text-sm md:text-[16px] w-[200px] h-[60px] font-normal md:px-5 text-white  rounded-full  py-4 px-4 whitespace-nowrap cursor-pointer ">
-              Connect Wallet
-            </Button>
-          </Link>
-        </section>
-        <div
-          className="flex cursor-pointer md:hidden"
-          onClick={() => setIsOpen((prev) => !prev)}
+    <Dialog>
+      <PageMaxWidth>
+        <section
+          className={`fixed w-full left-[50%] -translate-x-[50%] md:w-[95%] flex justify-between items-center z-30   py-2.5 px-4 transition-all font-sora duration-500  bg-white/5  rounded-4xl backdrop-blur-md   text-black shadow-lg  ${
+            isScroll
+              ? "md:max-w-[960px] md:px-8 shadow-nav md:top-9 bg-white/5 rounded-4xl backdrop-blur-md "
+              : "md:max-w-[1200px] max-w-full   shadow-none md:top-3 md:rounded-none  md:bg-transparent md:backdrop-blur-none"
+          }`}
         >
-          {isOpen ? (
-            <X className="sm:size-7 size-5" />
-          ) : (
-            <AlignJustify className="sm:size-7 size-5" />
-          )}
-        </div>
-        <NavMobile isOpen={isOpen} handleLinkClick={handleLinkClick} />
-      </section>
-    </PageMaxWidth>
+          <Link href={"/"}>
+            <div className="w-[140px]  h-[60px] flex  items-center ">
+              <Image
+                src="https://res.cloudinary.com/dk5mfu099/image/upload/v1762019013/Frame_1000011524_ekqlru.png"
+                alt="logo"
+                width={100}
+                height={70}
+              />
+            </div>
+          </Link>
+          <section className="items-center justify-center hidden gap-9 px-4 py-3 text-base font-normal  md:flex flex-1 md:mx-3 ">
+            {navbarItems.map((link, index) => (
+              <Link
+                href={link.link}
+                key={index}
+                className="whitespace-nowrap text-[16px] md:text-[20px] "
+              >
+                {link.title}
+              </Link>
+            ))}
+          </section>
+          <section className="items-center justify-center hidden gap-6 md:flex">
+            <DialogTrigger asChild>
+              <Link href={"/"}>
+                <Button className="text-sm md:text-[16px] w-[200px] h-[60px] font-normal md:px-5 text-white  rounded-full  py-4 px-4 whitespace-nowrap cursor-pointer ">
+                  Connect Wallet
+                </Button>
+              </Link>
+            </DialogTrigger>
+              <ConnectWalletModal />
+            
+          </section>
+          <div
+            className="flex cursor-pointer md:hidden"
+            onClick={() => setIsOpen((prev) => !prev)}
+          >
+            {!isOpen && <AlignJustify className="sm:size-7 size-5" />}
+          </div>
+          <NavMobile isOpen={isOpen} handleLinkClick={handleLinkClick} />
+        </section>
+      </PageMaxWidth>
+    </Dialog>
   );
 };
 
@@ -93,34 +100,55 @@ interface NavMobileProps {
 const NavMobile = ({ isOpen, handleLinkClick }: NavMobileProps) => {
   return (
     <>
-      <section
-        className="absolute md:hidden flex flex-col items-start justify-start px-2 py-6 top-20 w-full   shadow-nav  bg-white rounded-4xl backdrop-blur-md  transition-all duration-500 z-40 text-black h-full min-h-screen"
-        style={{ right: isOpen ? 0 : "-200%" }}
-      >
-        {navbarItems.map((link, index) => (
-          <Link
-            href={link.link}
-            key={index}
-            className="whitespace-nowrap px-5 py-3.5  w-full text-base  "
-            onClick={handleLinkClick}
-          >
-            {link.title}
-          </Link>
-        ))}
-        <section className="flex flex-col items-start justify-start w-full gap-4">
-          <Link href={"/"}>
-            <Button className="text-sm font-normal text-white ml-3 bg-primary border border-primary rounded-lg py-2.5 px-4 whitespace-nowrap cursor-pointer">
-              Download Now
-            </Button>
-          </Link>
-        </section>
-      </section>
-      <div
-        className={`fixed -bottom-10 -top-10 -left-10 w-[200vw] min-h-[300vh] md:hidden  bg-black/30 backdrop-blur-md transition-all duration-500 ${
-          isOpen ? "block " : "hidden"
-        }`}
-        onClick={handleLinkClick}
-      ></div>
+      <Dialog>
+        <aside
+          className={`fixed top-0 right-0 h-screen w-full bg-white/90  backdrop-blur-xl   shadow-xl z-50 flex flex-col pt-5 pb-10 rounded-l-2xl transition-transform duration-300 ease-out md:hidden 
+        ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+        >
+          <div className=" flex justify-between p-3  w-full mb-10 items-center">
+            <Image
+              src="https://res.cloudinary.com/dk5mfu099/image/upload/v1762019013/Frame_1000011524_ekqlru.png"
+              alt="logo"
+              width={100}
+              height={70}
+            />
+            <div
+              className="flex cursor-pointer md:hidden  items-center"
+              onClick={handleLinkClick}
+            >
+              {isOpen && <X className="size-8 " />}
+            </div>
+          </div>
+          <nav className="flex flex-col space-y-2   ">
+            {navbarItems.map((link, index) => (
+              <Link
+                href={link.link}
+                key={index}
+                className="px-6 py-3 text-lg font-medium text-gray-800 hover:text-primary transition "
+                onClick={handleLinkClick}
+              >
+                {link.title}
+              </Link>
+            ))}
+          </nav>
+
+          {/* CTA Button */}
+
+          <div className="mt-4 px-6">
+            <DialogTrigger asChild>
+              <Link href="/">
+                <Button
+                  onClick={handleLinkClick}
+                  className="w-full text-white bg-primary hover:bg-primary/90  py-3 text-sm h-[60px]"
+                >
+                  Connect Wallet
+                </Button>
+              </Link>
+            </DialogTrigger>
+            <ConnectWalletModal />
+          </div>
+        </aside>
+      </Dialog>
     </>
   );
 };

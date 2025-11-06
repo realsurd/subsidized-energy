@@ -119,15 +119,15 @@ const HeroSection = () => {
               <div className="flex flex-wrap gap-3 ">
                 <Button className="rounded-full bg-foreground text-background hover:bg-foreground/90 font-medium px-6 sm:px-8 text-sm md:text-[16px] flex-1 h-[60px] cursor-pointer">
                   Join the Community
-                  {/* <span className="ml-2"> */}
-                  <Image
+
+                  {/* <Image
                     src="/assets/arrow-right-round.svg"
                     alt="arrow-right-round"
                     width={24}
                     height={24}
                     className=" bg-white"
-                  />
-                  {/* </span> */}
+                  /> */}
+            
                 </Button>
                 <Button
                   variant="outline"

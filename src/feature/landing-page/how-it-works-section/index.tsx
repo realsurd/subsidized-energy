@@ -1,15 +1,13 @@
 "use client";
 
-import {  useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 
-
-gsap.registerPlugin(ScrollTrigger);  
-
+gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
@@ -52,19 +50,40 @@ export default function HowItWorks() {
       duration: 1,
       stagger: 0.15,
       ease: "power4.out",
-        markers: true,
-      masked: true,
+      markers: true,
+
       scrollTrigger: {
-        trigger: ".how-card",
-        start: "top 90%", // when the top of the box hits 90% of viewport height
-        end: "bottom top",
-        toggleActions: "play none none reverse",
+        trigger: sectionRef.current,
+        start: "top center", // when the top of the box hits 90% of viewport height
+        end: "bottom center",
       },
     });
+    gsap.from(".card-img", {
+      opacity: 0,
+      x: 300,
+      duration: 1.5,
+      ease: "power4.out",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top center", // when the top of the box hits 90% of viewport height
+        end: "bottom center",
+      },
+    });
+     gsap.from(".card-img1", {
+       opacity: 0,
+       x: -300,
+       duration: 1.5,
+       ease: "power4.out",
+       scrollTrigger: {
+         trigger: sectionRef.current,
+         start: "top center", // when the top of the box hits 90% of viewport height
+         end: "bottom center",
+       },
+     });
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full py-20 px-4 lg:px-0 bg-white">
+    <section className="w-full py-20 px-4 lg:px-0 bg-white">
       {/* Headings */}
       <div className="text-center max-w-2xl mx-auto mb-14">
         <h2 className="text-3xl md:text-4xl lg:text-[40px] font-semibold text-gray-800">
@@ -77,14 +96,19 @@ export default function HowItWorks() {
       </div>
 
       {/* Cards grid */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 gap-6 max-w-6xl mx-auto md:min-h-[700px]">
+      <div
+        ref={sectionRef}
+        className="grid md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 gap-6 max-w-6xl mx-auto md:min-h-[700px]"
+      >
         {steps.map((item, i) => (
           <div
             key={i}
             className={`how-card ${item.bg} rounded-2xl  ${
               i === 0 ? "lg:row-span-2 flex flex-col" : ""
             } ${
-              i === 1 ? " lg:col-span-2 flex justify-between" : ""
+              i === 1
+                ? " lg:col-span-2 flex justify-between gap-8 items-center overflow-hidden"
+                : ""
             } p-6 shadow-[0px_5px_20px_rgba(0,0,0,0.05)]`}
           >
             <div className="flex flex-col flex-1">
@@ -107,8 +131,8 @@ export default function HowItWorks() {
                   width={400}
                   height={300}
                   className={`object-cover hidden lg:flex flex-1   ${
-                    i === 0 ? "-translate-x-20" : ""
-                  } `}
+                    i === 0 ? "-translate-x-20 card-img1" : ""
+                  }   ${i === 1 ? "card-img" : ""}`}
                 />
               </div>
             )}

@@ -3,14 +3,14 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import PageMaxWidth from "@/components/page-max-width";
+import Image from "next/image";
 
-interface FAQItem
-{
-    id: number;
+interface FAQItem {
+  id: number;
   question: string;
   answer: string;
 }
-const faqItems:FAQItem[] = [
+const faqItems: FAQItem[] = [
   {
     id: 1,
     question: "What is Subsidized Energy?",
@@ -32,49 +32,41 @@ const faqItems:FAQItem[] = [
 ];
 
 export default function FAQ() {
-
-    return (
-      <section className=" bg-white font-trap">
-        <PageMaxWidth>
-          <div className="py-12 lg:py-20 px-4 sm:px-6 lg:px-30">
-            {/* Header */}
-            <div className="mb-12">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-                <h2 className="text-4xl lg:text-5xl font-bold text-foreground">
-                  FAQ
-                </h2>
-                <p className="text-gray-600 text-lg">
-                  Any{" "}
-                  <span className="text-green-600 font-semibold">
-                    Question?
-                  </span>
-                </p>
-              </div>
-            </div>
-
-            {/* Accordion Items */}
-            <div className="space-y-4">
-              {faqItems.map((faq, idx) => (
-                <FAQItem
-                  key={idx}
-                  question={faq.question}
-                  answer={faq.answer}
-                />
-              ))}
-            </div>
-
-            {/* Show All Questions Button */}
-            <div className="flex justify-center mt-10">
-              <button className="px-8 py-3 border-2 border-gray-800 rounded-full font-semibold text-foreground hover:bg-gray-50 transition-colors duration-200">
-                Show all questions
-              </button>
+  return (
+    <section className=" bg-white font-trap">
+      <PageMaxWidth>
+        <div className="py-12 lg:py-20 px-4 sm:px-6 lg:px-30">
+          {/* Header */}
+          <div className="mb-12">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+              <h2 className="text-4xl lg:text-5xl font-bold text-foreground">
+                FAQ
+              </h2>
+              <p className="text-gray-600 text-lg">
+                Any{" "}
+                <span className="text-green-600 font-semibold">Question?</span>
+              </p>
             </div>
           </div>
-        </PageMaxWidth>
-      </section>
-    );
-}
 
+          {/* Accordion Items */}
+          <div className="space-y-4">
+            {faqItems.map((faq, idx) => (
+              <FAQItem key={idx} question={faq.question} answer={faq.answer} />
+            ))}
+          </div>
+
+          {/* Show All Questions Button */}
+          <div className="flex justify-center mt-10">
+            <button className="px-8 py-3 border-2 border-gray-800 rounded-full font-semibold text-foreground hover:bg-gray-50 transition-colors duration-200">
+              Show all questions
+            </button>
+          </div>
+        </div>
+      </PageMaxWidth>
+    </section>
+  );
+}
 
 const FAQItem = ({
   question,
@@ -94,7 +86,11 @@ const FAQItem = ({
         <span className="text-base sm:text-lg font-bold text-[#1b4962] lg:text-[24px]">
           {question}
         </span>
-        <ChevronDown
+        <Image
+          width={55}
+          height={55}
+          src="/assets/plus-icon.svg"
+          alt="toggle icon"
           className={`transition-transform duration-300 ${
             open ? "rotate-180" : "rotate-0"
           }`}
@@ -105,10 +101,8 @@ const FAQItem = ({
           open ? "max-h-40 mt-2" : "max-h-0"
         }`}
       >
-        <p className="text-sm sm:text-base text-gray-600">{answer}</p>
-          </div>
-          
+        <p className="text-sm sm:text-base text-gray-600 py-6">{answer}</p>
+      </div>
     </div>
   );
 };
-
