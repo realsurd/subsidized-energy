@@ -1,6 +1,5 @@
 import LandingPage from "@/feature/landing-page";
 
-
 export default function Home() {
   return (
     <div>
