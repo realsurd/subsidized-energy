@@ -43,12 +43,10 @@ export default function Footer() {
               {/* Logo */}
               <div>
                 <Image
-                  src={
-                    "https://res.cloudinary.com/dk5mfu099/image/upload/v1762328666/Frame_1000011524_1_ay6cmj.png"
-                  }
-                  alt="footer image"
+                  src="https://res.cloudinary.com/dk5mfu099/image/upload/v1762496834/Logo_Preview_hhlrv0.png"
+                  alt="logo"
                   width={140}
-                  height={60}
+                  height={70}
                   className="object-cover "
                 />
               </div>
@@ -121,8 +119,7 @@ export default function Footer() {
                 {" "}
                 <span className="flex ">
                   &copy;
-                </span>{" "}
-                {new Date().getFullYear()} Subsidized Energy, All Rights
+                </span> {new Date().getFullYear()} Subsidized Energy, All Rights
                 Reserved.
               </p>
               <div className="flex gap-6">

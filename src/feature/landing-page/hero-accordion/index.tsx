@@ -1,5 +1,6 @@
 "use client";
-import { useRef, useState } from "react";
+
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 
@@ -23,22 +24,51 @@ const images = [
 
 export default function HeroAccordion() {
   const [active, setActive] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const refs = useRef<(HTMLDivElement | null)[]>([]);
+  const autoplayRef = useRef<NodeJS.Timeout | null>(null);
+  const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const handleClick = (index: number) => {
-    setActive(index);
-
+  // ✅ Handle animation when active changes
+  const animateAccordion = (index: number) => {
     refs.current.forEach((el, i) => {
       if (!el) return;
-
       gsap.to(el, {
         flex: i === index ? 10 : 1,
-          height: i === index ? 600 : 570,
+        height: i === index ? 600 : 570,
         alignSelf: i === index ? "start" : "center",
-        duration: 0.5,
+        duration: 0.8,
         ease: "power4.inOut",
       });
     });
+  };
+
+  // ✅ On mount & when active changes
+  useEffect(() => {
+    animateAccordion(active);
+  }, [active]);
+
+  // ✅ Autoplay logic
+  useEffect(() => {
+    if (isPaused) return;
+
+    autoplayRef.current = setInterval(() => {
+      setActive((prev) => (prev + 1) % images.length);
+    }, 4000);
+
+    return () => {
+      if (autoplayRef.current) clearInterval(autoplayRef.current);
+    };
+  }, [isPaused]);
+
+  // ✅ Handle user click (pause + resume after 5s)
+  const handleClick = (index: number) => {
+    setActive(index);
+    setIsPaused(true);
+    if (autoplayRef.current) clearInterval(autoplayRef.current);
+
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+    resumeTimeoutRef.current = setTimeout(() => setIsPaused(false), 5000);
   };
 
   return (
@@ -50,16 +80,18 @@ export default function HeroAccordion() {
             refs.current[i] = el;
           }}
           onClick={() => handleClick(i)}
-          // ✅ Initial CSS flex: first is bigger, others small
-          className={`relative cursor-pointer rounded-2xl overflow-hidden transition-all ${
-            i === 0 ? "flex-10" : "flex-1 h-[570px] self-center"
-          }`}
+          className={`relative cursor-pointer rounded-2xl overflow-hidden flex-1 transition-all`}
         >
-          <Image src={item.src} alt={item.alt} fill className="object-cover" />
+          <Image
+            src={item.src}
+            alt={item.alt}
+            fill
+            className="object-cover duration-700"
+          />
 
-          {/* ✅ Overlay stays proportional + clean */}
+          {/* Overlay */}
           <div
-            className={`absolute inset-0 transition-all ${
+            className={`absolute inset-0 transition-all duration-500 ${
               active === i ? "bg-black/0" : "bg-black/40"
             }`}
           />

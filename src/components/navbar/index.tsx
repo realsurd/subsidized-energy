@@ -50,9 +50,9 @@ const HeaderSection = () => {
           <Link href={"/"}>
             <div className="w-[140px]  h-[60px] flex  items-center ">
               <Image
-                src="https://res.cloudinary.com/dk5mfu099/image/upload/v1762019013/Frame_1000011524_ekqlru.png"
+                src="https://res.cloudinary.com/dk5mfu099/image/upload/v1762496834/Logo_Preview_hhlrv0.png"
                 alt="logo"
-                width={100}
+                width={140}
                 height={70}
               />
             </div>
@@ -76,8 +76,7 @@ const HeaderSection = () => {
                 </Button>
               </Link>
             </DialogTrigger>
-              <ConnectWalletModal />
-            
+            <ConnectWalletModal />
           </section>
           <div
             className="flex cursor-pointer md:hidden"
@@ -107,10 +106,10 @@ const NavMobile = ({ isOpen, handleLinkClick }: NavMobileProps) => {
         >
           <div className=" flex justify-between p-3  w-full mb-10 items-center">
             <Image
-              src="https://res.cloudinary.com/dk5mfu099/image/upload/v1762019013/Frame_1000011524_ekqlru.png"
-              alt="logo"
-              width={100}
-              height={70}
+               src="https://res.cloudinary.com/dk5mfu099/image/upload/v1762496834/Logo_Preview_hhlrv0.png"
+                alt="logo"
+                width={140}
+                height={70}
             />
             <div
               className="flex cursor-pointer md:hidden  items-center"

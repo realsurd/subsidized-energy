@@ -120,13 +120,6 @@ const HeroSection = () => {
                 <Button className="rounded-full bg-foreground text-background hover:bg-foreground/90 font-medium px-6 sm:px-8 text-sm md:text-[16px] flex-1 h-[60px] cursor-pointer">
                   Join the Community
 
-                  {/* <Image
-                    src="/assets/arrow-right-round.svg"
-                    alt="arrow-right-round"
-                    width={24}
-                    height={24}
-                    className=" bg-white"
-                  /> */}
             
                 </Button>
                 <Button
