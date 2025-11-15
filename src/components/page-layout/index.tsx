@@ -26,15 +26,10 @@ export function PageLayout({ children }: PageLayoutProps) {
   const hideNavbarFooter = hiddenPaths.includes(pathname);
 
   return (
-
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
-
     <div className="flex flex-col min-h-screen bg-white text-black shadow-md">
       {!hideNavbarFooter && <Navbar />}
       {children}
       {!hideNavbarFooter && <Footer />}
-      </div>
-      </div>
+    </div>
   );
 }

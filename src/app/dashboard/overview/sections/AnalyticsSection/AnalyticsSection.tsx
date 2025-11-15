@@ -48,10 +48,10 @@ const distributionData = [
 
 export const AnalyticsSection = (): JSX.Element => {
   return (
-    <section className="flex w-full items-center gap-6 relative">
+    <section className="flex w-full items-center gap-6 relative  h-[446px] py-2">
       <Card className="flex flex-col flex-1 items-start gap-2 pt-8 pb-4 px-4 relative bg-white rounded-2xl overflow-hidden border border-solid border-[#e3e5e8]">
         <CardContent className="relative w-full p-0 flex flex-col gap-2">
-          <h2 className="w-fit font-['HK_Grotesk-SemiBold',Helvetica] font-semibold text-black text-2xl text-left tracking-[0] leading-[normal]">
+          <h2 className="w-fit  font-semibold text-black text-2xl text-left tracking-[0] leading-[normal]">
             Energy Usage Vs Generation
           </h2>
 
@@ -60,7 +60,7 @@ export const AnalyticsSection = (): JSX.Element => {
               variant="outline"
               className="h-7 items-center gap-1 px-2.5 py-[9px] bg-[#fcfcfc] rounded border-[0.6px] border-solid border-neutral-300"
             >
-              <span className="font-['HK_Grotesk-Medium',Helvetica] font-medium text-color-palettesecondary-text text-xs tracking-[0] leading-2.5 whitespace-nowrap">
+              <span className=" font-medium text-color-palettesecondary-text text-xs tracking-[0] leading-2.5 whitespace-nowrap">
                 October
               </span>
               <ChevronDownIcon className="w-[18px] h-[18px]" />
@@ -80,7 +80,7 @@ export const AnalyticsSection = (): JSX.Element => {
                 {yAxisLabels.map((label, index) => (
                   <div
                     key={`y-axis-${index}`}
-                    className={`w-fit whitespace-nowrap relative font-['HK_Grotesk-Regular',Helvetica] font-normal text-[#000000b2] text-xs tracking-[0] leading-[normal] ${
+                    className={`w-fit whitespace-nowrap relative  font-normal text-[#000000b2] text-xs tracking-[0] leading-[normal] ${
                       index === 0 ? "-mt-px" : ""
                     }`}
                   >
@@ -96,7 +96,7 @@ export const AnalyticsSection = (): JSX.Element => {
                     alt="Chart"
                     src="https://res.cloudinary.com/dlinprg6k/image/upload/v1762516273/chart-3_h2c6ix.png"
                   />
-                  <div className="font-['HK_Grotesk-Regular',Helvetica] font-normal text-color-palettesecondary-text text-xs tracking-[0] leading-[normal] whitespace-nowrap">
+                  <div className=" font-normal text-color-palettesecondary-text text-xs tracking-[0] leading-[normal] whitespace-nowrap">
                     No Data to show!
                   </div>
                 </div>
@@ -110,7 +110,7 @@ export const AnalyticsSection = (): JSX.Element => {
                   className="flex flex-col items-end relative flex-1"
                 >
                   <div
-                    className={`self-stretch text-center relative font-['HK_Grotesk-Regular',Helvetica] font-normal text-[#000000b2] text-xs tracking-[0] leading-[normal] ${
+                    className={`self-stretch text-center relative  font-normal text-[#000000b2] text-xs tracking-[0] leading-[normal] ${
                       index === 0 ? "-mt-px" : ""
                     }`}
                   >
@@ -138,7 +138,7 @@ export const AnalyticsSection = (): JSX.Element => {
                       />
                     </div>
                   </div>
-                  <div className="relative w-fit font-['HK_Grotesk-Regular',Helvetica] font-normal text-[#000000b2] text-xs tracking-[0] leading-[normal] whitespace-nowrap">
+                  <div className="relative w-fit  font-normal text-[#000000b2] text-xs tracking-[0] leading-[normal] whitespace-nowrap">
                     {item.label}
                   </div>
                 </div>
@@ -148,9 +148,9 @@ export const AnalyticsSection = (): JSX.Element => {
         </CardContent>
       </Card>
 
-      <Card className="inline-flex items-center gap-2.5 px-[18px] py-8 relative self-stretch flex-[0_0_auto] bg-color-palettewhite rounded-2xl overflow-hidden border border-solid border-[#e3e5e8]">
+      <Card className="inline-flex items-center gap-2.5 px-[18px] py-8 relative self-stretch flex-[0_0_auto] bg-white rounded-2xl overflow-hidden border border-solid border-[#e3e5e8]">
         <CardContent className="flex flex-col w-[315px] items-center gap-[43px] relative p-0">
-          <h2 className="relative w-[305px] -mt-px font-['HK_Grotesk-SemiBold',Helvetica] font-semibold text-[#111827] text-2xl tracking-[0.30px] leading-[normal]">
+          <h2 className="relative w-[305px] -mt-px  font-semibold text-[#111827] text-2xl tracking-[0.30px] leading-[normal]">
             Energy Distribution Overview
           </h2>
 
@@ -177,16 +177,16 @@ export const AnalyticsSection = (): JSX.Element => {
                       />
                     </div>
                   </div>
-                  <div className="relative w-fit -mt-px font-['HK_Grotesk-SemiBold',Helvetica] text-color-palettedark-text text-base tracking-[0.30px] leading-[normal] whitespace-nowrap">
+                  <div className="relative w-fit -mt-px  text-color-palettedark-text text-base tracking-[0.30px] leading-[normal] whitespace-nowrap">
                     {item.label}
                   </div>
                 </div>
                 <div className="gap-1.5 inline-flex items-center relative flex-[0_0_auto]">
-                  <div className="relative w-fit -mt-px font-['HK_Grotesk-Medium',Helvetica] font-medium text-color-palettesecondary-text text-base tracking-[0.30px] leading-[normal] whitespace-nowrap">
+                  <div className="relative w-fit -mt-px  font-medium text-color-palettesecondary-text text-base tracking-[0.30px] leading-[normal] whitespace-nowrap">
                     {item.value}
                   </div>
                   <div
-                    className={`relative w-fit -mt-px font-['HK_Grotesk-SemiBold',Helvetica] font-semibold text-base tracking-[0.30px] leading-[normal] whitespace-nowrap ${item.percentageColor}`}
+                    className={`relative w-fit -mt-px  font-semibold text-base tracking-[0.30px] leading-[normal] whitespace-nowrap ${item.percentageColor}`}
                   >
                     {item.percentage}
                   </div>

@@ -5,7 +5,7 @@ import { CiSearch } from "react-icons/ci";
 
 const Header = () => {
   return (
-    <div className="font-grotesk bg-white shadow-sm border border-[#E3E5E8] rounded-md mx-5 mt-5 sticky top-0 z-50">
+    <div className=" bg-white shadow-sm border border-[#E3E5E8] rounded-md mx-5 mt-5 sticky top-0 z-50">
       <nav className="flex justify-between items-center w-full px-8 py-2 text-black">
         {/* Logo Section */}
         <Link href="/" className="flex items-center gap-1">
